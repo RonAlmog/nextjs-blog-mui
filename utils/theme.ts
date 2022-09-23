@@ -67,7 +67,7 @@ const darkThemeOptions: ThemeOptions = {
   palette: {
     background: {
       default: "#18191A",
-      paper: "#242526",
+      paper: "#299886",
     },
     text: {
       primary: "#F5F6F7",

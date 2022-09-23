@@ -1,6 +1,8 @@
 import React from "react";
 import { FC } from "react";
-import { PaletteMode } from "@mui/material";
+
+import { PaletteMode, useTheme } from "@mui/material";
+
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -16,9 +18,16 @@ interface Props {
 }
 
 const HeaderComponent: FC<Props> = ({ mode, onChange }) => {
+  const customTheme = useTheme();
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+      <AppBar
+        position="static"
+        style={{
+          backgroundColor: customTheme.palette.background.paper,
+          color: customTheme.palette.text.primary,
+        }}
+      >
         <Toolbar>
           <IconButton
             size="large"
@@ -33,7 +42,11 @@ const HeaderComponent: FC<Props> = ({ mode, onChange }) => {
             John Papa
           </Typography>
           <Button color="inherit">Login</Button>
-          <Switch checked={true} color="secondary" />
+          <Switch
+            checked={mode === "dark"}
+            onChange={onChange}
+            color="secondary"
+          />
         </Toolbar>
       </AppBar>
     </Box>

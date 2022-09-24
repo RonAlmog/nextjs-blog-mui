@@ -7,8 +7,10 @@ import {
   Box,
   createTheme,
   CssBaseline,
+  Divider,
   PaletteMode,
   ThemeProvider,
+  Typography,
   useTheme,
 } from "@mui/material";
 import {
@@ -72,6 +74,20 @@ function MyApp({ Component, pageProps }: AppProps) {
           <Badge badgeContent={6} color="success">
             <MailIcon />
           </Badge>
+          <div style={{ height: "400px", color: theme.palette.warning.dark }}>
+            hello warning dark
+            <Typography color="primary" variant="h1">
+              Hello Typography primary h1
+            </Typography>
+            <Divider />
+            <Typography color="secondary" variant="h3">
+              Hello Typography secondary h3
+            </Typography>
+            <Divider />
+            <Typography variant="h4">Hello Typography primary h4</Typography>
+            <Divider />
+            <p>Just a paragraph with no styling</p>
+          </div>
         </div>
       </Box>
 

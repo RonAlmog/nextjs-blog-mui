@@ -23,6 +23,7 @@ const HeaderComponent: FC<Props> = ({ mode, onChange }) => {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar
         position="static"
+        // this is optional
         style={{
           backgroundColor: customTheme.palette.background.paper,
           color: customTheme.palette.text.primary,

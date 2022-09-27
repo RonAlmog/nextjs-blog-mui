@@ -5,6 +5,12 @@ import matter from "gray-matter";
 import { serialize } from "next-mdx-remote/serialize";
 import { MDXRemote } from "next-mdx-remote";
 import BlogHeaderComponent from "../../components/layout/blogHeaderComponent";
+import hljs from "highlight.js";
+import typescript from "highlight.js/lib/languages/typescript";
+import "highlight.js/styles/vs2015.css";
+import { useEffect } from "react";
+
+hljs.registerLanguage("typescript", typescript);
 
 const components = {
   BlogHeaderComponent,
@@ -13,6 +19,10 @@ const components = {
 export default function Article({
   source,
 }): InferGetStaticPropsType<typeof getStaticProps> {
+  useEffect(() => {
+    hljs.highlightAll();
+  }, []);
+
   return (
     <div style={{ width: "600px", margin: "auto" }}>
       <MDXRemote {...source} components={components} />

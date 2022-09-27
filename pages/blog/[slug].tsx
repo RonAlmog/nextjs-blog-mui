@@ -18,7 +18,7 @@ const components = {
 
 export default function Article({
   source,
-}): InferGetStaticPropsType<typeof getStaticProps> {
+}: InferGetStaticPropsType<typeof getStaticProps>) {
   useEffect(() => {
     hljs.highlightAll();
   }, []);

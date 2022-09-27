@@ -1,11 +1,19 @@
-import type { NextPage } from "next";
+import type { GetStaticProps, InferGetStaticPropsType, NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import { Badge, Box, Divider, Typography } from "@mui/material";
+import fs from "fs";
+import path from "path";
+import matter from "gray-matter";
 
 import MailIcon from "@mui/icons-material/Mail";
+import { Post } from "../models/post.interface";
+import CardComponent from "../components/card";
 
-const Home: NextPage = () => {
+const Home: NextPage = ({
+  posts,
+}: InferGetStaticPropsType<typeof getStaticProps>) => {
+  console.log("posts:", posts);
   return (
     <div>
       <Head>
@@ -56,8 +64,26 @@ const Home: NextPage = () => {
           </div>
         </div>
       </Box>
+      <div>
+        {posts.map((post: Post, index: number) => (
+          <CardComponent key={index} post={post} />
+        ))}
+      </div>
     </div>
   );
 };
 
 export default Home;
+
+export const getStaticProps: GetStaticProps = async () => {
+  const articlesDirectory = path.join("articles");
+  const files = fs.readdirSync(articlesDirectory);
+  const blogPosts = files.map((fileName: string) => {
+    const slug = fileName.replace(".mdx", "");
+    const article = fs.readFileSync(path.join("articles", fileName));
+    const { data: metaData } = matter(article);
+    return { slug, metaData };
+  });
+
+  return { props: { posts: blogPosts } };
+};

@@ -9,11 +9,14 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@date-io/date-fns": "^2.16.0",
     "@emotion/react": "^11.10.4",
     "@emotion/styled": "^11.10.4",
+    "@material-ui/pickers": "^3.3.10",
     "@mui/icons-material": "^5.10.6",
     "@mui/material": "^5.10.6",
     "@types/highlight.js": "^10.1.0",
+    "date-fns": "^2.29.3",
     "gray-matter": "^4.0.3",
     "highlight.js": "^11.6.0",
     "marked": "^4.1.0",

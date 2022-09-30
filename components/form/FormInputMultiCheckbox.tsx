@@ -3,6 +3,7 @@ import {
   Checkbox,
   FormControl,
   FormControlLabel,
+  FormHelperText,
   FormLabel,
 } from "@mui/material";
 import { Controller } from "react-hook-form";
@@ -69,6 +70,9 @@ export const FormInputMultiCheckbox: React.FC<FormInputProps> = ({
           );
         })}
       </div>
+      <FormHelperText id="myhelpertext">
+        Please select only one option
+      </FormHelperText>
     </FormControl>
   );
 };

@@ -1,37 +1,36 @@
 import React from "react";
 import DateFnsUtils from "@date-io/date-fns";
-import {
-  KeyboardDatePicker,
-  MuiPickersUtilsProvider,
-} from "@material-ui/pickers";
+import { LocalizationProvider } from "@mui/lab";
+import AdapterDateFns from "@mui/lab/AdapterDateFns";
+import { Stack, TextField } from "@mui/material";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { useState } from "react";
+
 import { Controller, useFormContext } from "react-hook-form";
 import { FormInputProps } from "./FormInputProps";
 const DATE_FORMAT = "dd-MMM-yy";
 
 export const FormInputDate = ({ name, control, label }: FormInputProps) => {
+  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+  console.log({ selectedDate });
   return (
-    <MuiPickersUtilsProvider utils={DateFnsUtils}>
+    <LocalizationProvider dataAdapter={AdapterDateFns}>
       <Controller
         name={name}
         control={control}
         render={({ field, fieldState, formState }) => (
-          <KeyboardDatePicker
-            fullWidth
-            variant="inline"
-            defaultValue={new Date()}
-            id={`date-${Math.random()}`}
-            label={label}
-            rifmFormatter={(val) => val.replace(/[^[a-zA-Z0-9-]*$]+/gi, "")}
-            refuse={/[^[a-zA-Z0-9-]*$]+/gi}
-            autoOk
-            KeyboardButtonProps={{
-              "aria-label": "change date",
-            }}
-            format={DATE_FORMAT}
-            {...field}
-          />
+          <Stack spacing={4} sx={{ width: "250px" }}>
+            <DatePicker
+              label={label}
+              renderInput={(params) => <TextField {...params} />}
+              value={selectedDate}
+              onChange={(newValue) => {
+                setSelectedDate(newValue);
+              }}
+            />
+          </Stack>
         )}
       />
-    </MuiPickersUtilsProvider>
+    </LocalizationProvider>
   );
 };

@@ -34,7 +34,6 @@ export const FormInputText = ({
             label={label}
             variant="outlined"
           />
-          <FormHelperText id="myhelpertext">{error?.message}</FormHelperText>
         </FormControl>
       )}
     />

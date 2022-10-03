@@ -20,12 +20,12 @@ interface IFormInput {
   salary: number;
 }
 const defaultValues = {
-  userName: "johny",
+  userName: "",
   agreeToTerms: "true",
   preferences: [],
   dateOfBirth: new Date(),
-  selectedPet: "dog",
-  salary: 100,
+  selectedPet: "",
+  salary: 0,
 };
 
 const FormDemo = (props: Props) => {
@@ -41,6 +41,7 @@ const FormDemo = (props: Props) => {
   const onSubmit = (data: IFormInput) => console.log(data);
 
   const selectOptions = [
+    { value: "", text: "" },
     { value: "cat", text: "Cat" },
     { value: "dog", text: "Dog" },
     { value: "camel", text: "Camel" },
@@ -71,12 +72,15 @@ const FormDemo = (props: Props) => {
             name="agreeToTerms"
             control={control}
             label="Agree to Terms"
+            rules={{ required: "please choose one option" }}
           />
           <FormInputDate
             name="dateOfBirth"
             control={control}
             label="Date of Birth"
+            rules={{ required: "please select your date of birth" }}
           />
+          <br />
           <FormInputDropdown
             name="preferences"
             control={control}

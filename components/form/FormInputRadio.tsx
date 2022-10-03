@@ -25,6 +25,7 @@ export const FormInputRadio: React.FC<FormInputProps> = ({
   name,
   control,
   label,
+  rules,
 }) => {
   const generateRadioOptions = () => {
     return options.map((singleOption) => (
@@ -43,6 +44,7 @@ export const FormInputRadio: React.FC<FormInputProps> = ({
       <Controller
         name={name}
         control={control}
+        rules={rules}
         render={({
           field: { onChange, value },
           fieldState: { error },

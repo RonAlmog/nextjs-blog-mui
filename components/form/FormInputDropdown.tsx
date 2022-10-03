@@ -14,6 +14,7 @@ export const FormInputDropdown: React.FC<FormInputProps> = ({
   control,
   label,
   selectOptions,
+  rules,
 }) => {
   const generateSingleOptions = () => {
     if (selectOptions) {
@@ -32,13 +33,14 @@ export const FormInputDropdown: React.FC<FormInputProps> = ({
     <FormControl size={"small"}>
       <InputLabel>{label}</InputLabel>
       <Controller
+        control={control}
+        name={name}
+        rules={rules}
         render={({ field: { onChange, value } }) => (
           <Select onChange={onChange} value={value}>
             {generateSingleOptions()}
           </Select>
         )}
-        control={control}
-        name={name}
       />
       <FormHelperText id="myhelpertext">
         Please select only one option

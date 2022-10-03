@@ -10,14 +10,20 @@ import { Controller, useFormContext } from "react-hook-form";
 import { FormInputProps } from "./FormInputProps";
 const DATE_FORMAT = "dd-MMM-yy";
 
-export const FormInputDate = ({ name, control, label }: FormInputProps) => {
+export const FormInputDate = ({
+  name,
+  control,
+  label,
+  rules,
+}: FormInputProps) => {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
-  console.log({ selectedDate });
+  // console.log({ selectedDate });
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <Controller
         name={name}
         control={control}
+        rules={rules}
         render={({ field, fieldState, formState }) => (
           <Stack spacing={4} sx={{ width: "250px" }}>
             <DatePicker

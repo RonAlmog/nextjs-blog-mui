@@ -1,6 +1,7 @@
 import { Button } from "@mui/material";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
+import { Container } from "@mui/system";
 import { FormProvider, useForm } from "react-hook-form";
 import { FormInputDate } from "../../components/form/FormInputDate";
 import { FormInputDropdown } from "../../components/form/FormInputDropdown";
@@ -29,7 +30,14 @@ const defaultValues = {
 
 const FormDemo = (props: Props) => {
   const methods = useForm<IFormInput>({ defaultValues: defaultValues });
-  const { handleSubmit, reset, control, setValue, watch } = methods;
+  const {
+    handleSubmit,
+    reset,
+    control,
+    setValue,
+    watch,
+    formState: { errors },
+  } = methods;
   const onSubmit = (data: IFormInput) => console.log(data);
 
   const selectOptions = [
@@ -39,45 +47,54 @@ const FormDemo = (props: Props) => {
     { value: "elephant", text: "Elephant" },
   ];
   return (
-    <Paper
-      style={{
-        display: "grid",
-        gridRowGap: "20px",
-        padding: "20px",
-        margin: "10px 300px",
-      }}
-    >
-      <Typography variant="h6"> Form Demo</Typography>
-      {/* "handleSubmit" will validate your inputs before invoking "onSubmit"  */}
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <FormInputText name="userName" control={control} label="User Name" />
-        <FormInputRadio
-          name="agreeToTerms"
-          control={control}
-          label="Agree to Terms"
-        />
-        <FormInputDate
-          name="dateOfBirth"
-          control={control}
-          label="Date of Birth"
-        />
-        <FormInputDropdown
-          name="preferences"
-          control={control}
-          label="Select your pet"
-          selectOptions={selectOptions}
-        />
-        <br />
-        <Button onClick={handleSubmit(onSubmit)} variant={"contained"}>
-          {" "}
-          Submit{" "}
-        </Button>
-        <Button onClick={() => reset()} variant={"outlined"}>
-          {" "}
-          Reset{" "}
-        </Button>
-      </form>
-    </Paper>
+    <Container>
+      <Paper
+        style={{
+          display: "grid",
+          gridRowGap: "20px",
+          padding: "20px",
+          margin: "10px 300px",
+        }}
+      >
+        <Typography variant="h6"> Form Demo</Typography>
+        {/* "handleSubmit" will validate your inputs before invoking "onSubmit"  */}
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <FormInputText
+            name="userName"
+            control={control}
+            label="User Name"
+            errors={errors}
+            rules={{ required: "please state your name" }}
+          />
+          <br />
+          <FormInputRadio
+            name="agreeToTerms"
+            control={control}
+            label="Agree to Terms"
+          />
+          <FormInputDate
+            name="dateOfBirth"
+            control={control}
+            label="Date of Birth"
+          />
+          <FormInputDropdown
+            name="preferences"
+            control={control}
+            label="Select your pet"
+            selectOptions={selectOptions}
+          />
+          <br />
+          <Button onClick={handleSubmit(onSubmit)} variant={"contained"}>
+            {" "}
+            Submit{" "}
+          </Button>
+          <Button onClick={() => reset()} variant={"outlined"}>
+            {" "}
+            Reset{" "}
+          </Button>
+        </form>
+      </Paper>
+    </Container>
   );
 };
 

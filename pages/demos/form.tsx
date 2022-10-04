@@ -13,20 +13,37 @@ type Props = {};
 
 interface IFormInput {
   userName: string;
-  agreeToTerms: string;
+  selectSize: number;
   preferences: any[];
   dateOfBirth: Date;
   selectedPet: string;
   salary: number;
+  price?: number;
 }
 const defaultValues = {
   userName: "",
-  agreeToTerms: "true",
+  selectSize: undefined,
   preferences: [],
-  dateOfBirth: new Date(),
-  selectedPet: "",
+  dateOfBirth: undefined,
+  selectedPet: undefined,
   salary: 0,
+  price: undefined,
 };
+
+const radioOptions = [
+  {
+    label: "Small",
+    value: "1",
+  },
+  {
+    label: "Medium",
+    value: "2",
+  },
+  {
+    label: "Large",
+    value: "3",
+  },
+];
 
 const FormDemo = (props: Props) => {
   const methods = useForm<IFormInput>({ defaultValues: defaultValues });
@@ -68,11 +85,21 @@ const FormDemo = (props: Props) => {
             rules={{ required: "please state your name" }}
           />
           <br />
-          <FormInputRadio
-            name="agreeToTerms"
+          <FormInputText
+            name="price"
             control={control}
-            label="Agree to Terms"
-            rules={{ required: "please choose one option" }}
+            label="Price"
+            errors={errors}
+            rules={{ required: "Price is required" }}
+          />
+
+          <br />
+          <FormInputRadio
+            name="selectSize"
+            control={control}
+            label="Select size"
+            options={radioOptions}
+            rules={{ required: "please choose the right size for you" }}
           />
           <FormInputDate
             name="dateOfBirth"

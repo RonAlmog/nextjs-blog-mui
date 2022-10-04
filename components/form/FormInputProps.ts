@@ -4,6 +4,7 @@ export interface FormInputProps {
   name: string;
   control: any;
   label: string;
+  options?: any[];
   rules?: RegisterOptions;
   setValue?: any;
   selectOptions?: any[];

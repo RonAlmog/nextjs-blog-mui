@@ -42,9 +42,6 @@ export const FormInputDropdown: React.FC<FormInputProps> = ({
           </Select>
         )}
       />
-      <FormHelperText id="myhelpertext">
-        Please select only one option
-      </FormHelperText>
     </FormControl>
   );
 };

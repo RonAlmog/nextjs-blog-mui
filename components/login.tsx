@@ -21,6 +21,7 @@ const paperStyle = {
   margin: "20px auto",
 };
 const avatarStyle = { backgroundColor: "#1bbd7e" };
+const btstyle = { margin: "8px 0" };
 
 const Login = (props: Props) => {
   return (
@@ -54,7 +55,13 @@ const Login = (props: Props) => {
           control={<Checkbox name="" color="primary" />}
           label="Remember Me"
         ></FormControlLabel>
-        <Button type="submit" color="primary" variant="contained" fullWidth>
+        <Button
+          type="submit"
+          color="primary"
+          variant="contained"
+          fullWidth
+          style={btstyle}
+        >
           Sign In
         </Button>
 

@@ -21,7 +21,7 @@ const SignUp = (props: Props) => {
     padding: 20,
     height: "70vh",
     width: 320,
-    margin: "0px auto",
+    margin: "0 auto",
   };
   const avatarStyle = { backgroundColor: "#1bbd7e" };
   const btstyle = { margin: "8px 0" };
@@ -29,7 +29,7 @@ const SignUp = (props: Props) => {
   const marginTop = { marginTop: 5 };
   return (
     <Grid>
-      <Paper elevation={10} style={paperStyle}>
+      <Paper style={paperStyle}>
         <Grid
           container
           direction="column"

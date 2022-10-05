@@ -28,6 +28,7 @@ const SignupLogin = (props: Props) => {
             indicatorColor="primary"
             textColor="primary"
             onChange={handleChange}
+            variant="fullWidth"
           >
             <Tab label="Sign In" value="signin"></Tab>
             <Tab label="Sign Up" value="signup"></Tab>

@@ -18,7 +18,7 @@ const paperStyle = {
   padding: 20,
   height: "70vh",
   width: 320,
-  margin: "0px auto",
+  margin: "0 auto",
 };
 const avatarStyle = { backgroundColor: "#1bbd7e" };
 const btstyle = { margin: "8px 0" };
@@ -26,7 +26,7 @@ const btstyle = { margin: "8px 0" };
 const Login = (props: Props) => {
   return (
     <Grid>
-      <Paper elevation={10} style={paperStyle}>
+      <Paper style={paperStyle}>
         <Grid
           container
           direction="column"

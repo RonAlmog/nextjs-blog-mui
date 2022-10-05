@@ -7,28 +7,38 @@ import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
 
 import React, { useState } from "react";
+import Login from "./login";
+import SignUp from "./signup";
 
 type Props = {};
 
 const SignupLogin = (props: Props) => {
-  const [value, setValue] = useState("0");
+  const [value, setValue] = useState("signin");
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
   };
+  const paperStyle = { width: 320, margin: "20px auto" };
+  const tabStyle = { padding: 0 };
   return (
-    <Paper square>
+    <Paper style={paperStyle} elevation={20}>
       <TabContext value={value}>
-        <TabList
-          value={value}
-          indicatorColor="primary"
-          textColor="primary"
-          onChange={handleChange}
-        >
-          <Tab label="xx"></Tab>
-          <Tab label="yy"></Tab>
-        </TabList>
-        <TabPanel value="0">xxx</TabPanel>
-        <TabPanel value="1">yyy</TabPanel>
+        <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+          <TabList
+            value={value}
+            indicatorColor="primary"
+            textColor="primary"
+            onChange={handleChange}
+          >
+            <Tab label="Sign In" value="signin"></Tab>
+            <Tab label="Sign Up" value="signup"></Tab>
+          </TabList>
+        </Box>
+        <TabPanel value="signin" style={tabStyle}>
+          <Login />
+        </TabPanel>
+        <TabPanel value="signup" style={tabStyle}>
+          <SignUp />
+        </TabPanel>
       </TabContext>
     </Paper>
   );

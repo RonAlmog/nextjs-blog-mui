@@ -20,8 +20,8 @@ const SignUp = (props: Props) => {
   const paperStyle = {
     padding: 20,
     height: "70vh",
-    width: 310,
-    margin: "20px auto",
+    width: 320,
+    margin: "0px auto",
   };
   const avatarStyle = { backgroundColor: "#1bbd7e" };
   const btstyle = { margin: "8px 0" };

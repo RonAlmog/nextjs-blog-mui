@@ -39,6 +39,11 @@ const validationSchema = Yup.object().shape({
 const Login = ({ handleChange }) => {
   const onSubmit = (values, props) => {
     console.log(values);
+    setTimeout(() => {
+      props.resetForm();
+      props.setSubmitting(false);
+    }, 2000);
+    console.log(props);
   };
   return (
     <Grid>
@@ -69,6 +74,7 @@ const Login = ({ handleChange }) => {
                 placeholder="Enter user name"
                 fullWidth
                 helperText={<ErrorMessage name="username" />}
+                error={props.errors.username}
               />
               <Field
                 as={TextField}
@@ -79,6 +85,7 @@ const Login = ({ handleChange }) => {
                 fullWidth
                 type="password"
                 helperText={<ErrorMessage name="password" />}
+                error={props.errors.password}
               />
               <Field
                 as={FormControlLabel}
@@ -93,8 +100,9 @@ const Login = ({ handleChange }) => {
                 variant="contained"
                 fullWidth
                 style={btstyle}
+                disabled={props.isSubmitting}
               >
-                Sign In
+                {props.isSubmitting ? "Loading..." : "Sign In"}
               </Button>
             </Form>
           )}

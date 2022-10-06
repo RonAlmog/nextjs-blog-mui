@@ -11,7 +11,7 @@ import Grid from "@mui/material/Grid";
 import React from "react";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Box from "@mui/system/Box";
-import Link from "next/link";
+import Link from "../src/Link";
 
 type Props = {};
 const paperStyle = {
@@ -23,7 +23,7 @@ const paperStyle = {
 const avatarStyle = { backgroundColor: "#1bbd7e" };
 const btstyle = { margin: "8px 0" };
 
-const Login = (props: Props) => {
+const Login = ({ handleChange }) => {
   return (
     <Grid>
       <Paper style={paperStyle}>
@@ -70,7 +70,9 @@ const Login = (props: Props) => {
         </Typography>
         <Typography>
           Have an account?
-          <Link href="#">Sign Up</Link>
+          <Link href="#" onClick={() => handleChange("event", "signup")}>
+            Sign Up
+          </Link>
         </Typography>
       </Paper>
     </Grid>

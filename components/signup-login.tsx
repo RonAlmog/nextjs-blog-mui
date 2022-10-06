@@ -35,7 +35,7 @@ const SignupLogin = (props: Props) => {
           </TabList>
         </Box>
         <TabPanel value="signin" style={tabStyle}>
-          <Login />
+          <Login handleChange={handleChange} />
         </TabPanel>
         <TabPanel value="signup" style={tabStyle}>
           <SignUp />

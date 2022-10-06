@@ -12,6 +12,8 @@ import React from "react";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Box from "@mui/system/Box";
 import Link from "../src/Link";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
 
 type Props = {};
 const paperStyle = {
@@ -22,8 +24,22 @@ const paperStyle = {
 };
 const avatarStyle = { backgroundColor: "#1bbd7e" };
 const btstyle = { margin: "8px 0" };
+const initialValues = {
+  username: "",
+  password: "",
+  rememberme: false,
+};
+const validationSchema = Yup.object().shape({
+  username: Yup.string()
+    .email("Please enter a valid email")
+    .required("Username is required"),
+  password: Yup.string().required("Password is required"),
+});
 
 const Login = ({ handleChange }) => {
+  const onSubmit = (values, props) => {
+    console.log(values);
+  };
   return (
     <Grid>
       <Paper style={paperStyle}>
@@ -38,32 +54,51 @@ const Login = ({ handleChange }) => {
           </Avatar>
           <h2>Sign In</h2>
         </Grid>
-        <TextField
-          label="Username"
-          placeholder="Enter user name"
-          fullWidth
-          required
-        />
-        <TextField
-          label="Password"
-          placeholder="Enter password"
-          fullWidth
-          type="password"
-          required
-        />
-        <FormControlLabel
-          control={<Checkbox name="" color="primary" />}
-          label="Remember Me"
-        ></FormControlLabel>
-        <Button
-          type="submit"
-          color="primary"
-          variant="contained"
-          fullWidth
-          style={btstyle}
+        <Formik
+          initialValues={initialValues}
+          onSubmit={onSubmit}
+          validationSchema={validationSchema}
         >
-          Sign In
-        </Button>
+          {(props) => (
+            <Form>
+              <Field
+                as={TextField}
+                name="username"
+                variant="standard"
+                label="Username"
+                placeholder="Enter user name"
+                fullWidth
+                helperText={<ErrorMessage name="username" />}
+              />
+              <Field
+                as={TextField}
+                name="password"
+                variant="standard"
+                label="Password"
+                placeholder="Enter password"
+                fullWidth
+                type="password"
+                helperText={<ErrorMessage name="password" />}
+              />
+              <Field
+                as={FormControlLabel}
+                name="rememberme"
+                control={<Checkbox color="primary" />}
+                label="Remember Me"
+              ></Field>
+
+              <Button
+                type="submit"
+                color="primary"
+                variant="contained"
+                fullWidth
+                style={btstyle}
+              >
+                Sign In
+              </Button>
+            </Form>
+          )}
+        </Formik>
 
         <Typography>
           <Link href="#">Forgot password?</Link>

@@ -95,7 +95,7 @@ const SignUp = (props: Props) => {
                 variant="standard"
                 placeholder="Enter your name"
                 helperText={<ErrorMessage name="name" />}
-                error={!!props.errors.name}
+                error={Boolean(props.errors.name)}
               />
               <Field
                 as={TextField}
@@ -105,7 +105,7 @@ const SignUp = (props: Props) => {
                 variant="standard"
                 placeholder="Enter your email"
                 helperText={<ErrorMessage name="email" />}
-                error={!!props.errors.email}
+                error={Boolean(props.errors.email)}
               />
 
               <FormControl style={marginTop}>
@@ -119,7 +119,7 @@ const SignUp = (props: Props) => {
                   name="gender"
                   style={{ display: "initial" }}
                   helperText={<ErrorMessage name="gender" />}
-                  error={!!props.errors.gender}
+                  error={Boolean(props.errors.gender)}
                 >
                   <FormControlLabel
                     value="female"
@@ -132,10 +132,10 @@ const SignUp = (props: Props) => {
                     label="Male"
                   />
                 </Field>
+                <FormHelperText error={Boolean(props.errors.gender)}>
+                  <ErrorMessage name="gender" />
+                </FormHelperText>
               </FormControl>
-              <FormHelperText>
-                <ErrorMessage name="gender" />
-              </FormHelperText>
 
               <Field
                 as={TextField}
@@ -145,7 +145,7 @@ const SignUp = (props: Props) => {
                 variant="standard"
                 placeholder="Enter your phone number"
                 helperText={<ErrorMessage name="phoneNumber" />}
-                error={!!props.errors.phoneNumber}
+                error={Boolean(props.errors.phoneNumber)}
               />
               <Field
                 as={TextField}
@@ -156,7 +156,7 @@ const SignUp = (props: Props) => {
                 variant="standard"
                 placeholder="select a password"
                 helperText={<ErrorMessage name="password" />}
-                error={!!props.errors.password}
+                error={Boolean(props.errors.password)}
               />
               <Field
                 as={TextField}
@@ -167,7 +167,7 @@ const SignUp = (props: Props) => {
                 variant="standard"
                 placeholder="confirm your password"
                 helperText={<ErrorMessage name="confirmPassword" />}
-                error={!!props.errors.confirmPassword}
+                error={Boolean(props.errors.confirmPassword)}
               />
 
               <FormControlLabel
@@ -176,12 +176,12 @@ const SignUp = (props: Props) => {
                     as={Checkbox}
                     name="termsAndConditions"
                     helperText={<ErrorMessage name="termsAndConditions" />}
-                    error={!!props.errors.termsAndConditions}
+                    error={Boolean(props.errors.termsAndConditions)}
                   />
                 }
                 label="I accept terms and conditions"
               ></FormControlLabel>
-              <FormHelperText error={!!props.errors.termsAndConditions}>
+              <FormHelperText error={Boolean(props.errors.termsAndConditions)}>
                 <ErrorMessage name="termsAndConditions" />
               </FormHelperText>
               <Button type="submit" variant="contained" color="primary">
